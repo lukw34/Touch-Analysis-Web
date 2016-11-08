@@ -1,0 +1,35 @@
+{
+  "name": "touch-analysis-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lukw34/Touch-Analysis-Web.git"
+  },
+  "keywords": [
+    "csv",
+    "plot",
+    "web"
+  ],
+  "author": "Lukasz Walewski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukw34/Touch-Analysis-Web/issues"
+  },
+  "homepage": "https://github.com/lukw34/Touch-Analysis-Web#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.14.0",
+    "express-http-proxy": "^0.10.1",
+    "gulp": "^3.9.1",
+    "gulp-express": "^0.3.5",
+    "gulp-jshint": "^2.0.2",
+    "gulp-less": "^3.2.0",
+    "gulp-minify": "0.0.14",
+    "gulp-watch": "^4.3.10"
+  }
+}

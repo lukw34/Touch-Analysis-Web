@@ -1,0 +1,25 @@
+{
+  "name": "touch-analysis-web",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Lukasz Walewski"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "csv",
+    "plot",
+    "web"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
