@@ -3,6 +3,15 @@ var server = require('gulp-express');
 var less = require('gulp-less');
 var path = require('path');
 var minify = require('gulp-minify');
+var htmlcpr = require('gulp-htmlcpr');
+var concat = require('gulp-concat');
+
+gulp.task('copy-html', function() {
+    return gulp.src('./src/**/*.html')
+        .pipe(htmlcpr())
+        .pipe(gulp.dest('./dist/html'))
+})
+
 
 gulp.task('less', function () {
    return gulp.src('./src/**/*.less')
@@ -13,8 +22,9 @@ gulp.task('less', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./src/**/*.js', ['start']);
+    gulp.watch('./src/**/*.js', ['compress']);
     gulp.watch('./src/**/*.less', ['less']);
+    gulp.watch('./src/**/*.html', ['copy-html']);
 });
 
 gulp.task('server', function () {
@@ -22,15 +32,11 @@ gulp.task('server', function () {
 });
 
 gulp.task('compress', function() {
-    gulp.src('./src/**/*.js')
-        .pipe(minify({
-            ext:{
-                src:'-debug.js',
-                min:'.js'
-            },
-        }))
-        .pipe(gulp.dest('dist'))
+    return gulp.src('./src/**/*.js')
+        .pipe(concat('app.js'))
+        // .pipe(uglify())
+        .pipe(gulp.dest('./dist/'))
 });
 
-gulp.task('start', ['less', 'compress', 'server', 'watch'])
+gulp.task('start', ['less', 'compress', 'copy-html', 'server', 'watch'])
 

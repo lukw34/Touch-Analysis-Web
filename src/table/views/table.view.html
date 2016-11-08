@@ -1,0 +1,31 @@
+<div>
+    <md-list>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
+            <thead>
+            <th>userId</th>
+            <th>gender</th>
+            <th>hand</th>
+            <th>finger</th>
+            <th>position</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="measure in tc.measurement">
+                <td>{{measure.userId}}</td>
+                <td>{{measure.gender}}</td>
+                <td>{{measure.hand}}</td>
+                <td>{{measure.finger}}</td>
+                <td>{{measure.position}}</td>
+                <td>
+                    <md-button class="md-raised md-primary" ng-click="tc.getTouch(measure.touchURL)">touch</md-button>
+                </td>
+                <td>
+                    <md-button class="md-raised md-warn">accele..</md-button>
+                </td>
+            </tr>
+
+
+            </tbody>
+
+        </table>
+    </md-list>
+</div>
