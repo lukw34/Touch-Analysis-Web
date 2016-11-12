@@ -1,5 +1,12 @@
-table.controller('TableController', ['MeasureService', function (MeasureService) {
+table.controller('TableController', ['MeasureService', '$mdDialog', function (MeasureService, $mdDialog) {
     var tc = this;
+    var plotDialog = {
+        controller: 'PlotController',
+        templateUrl: 'dist/html/table/views/plotModal.html',
+        parent: angular.element(document.body),
+        clickOutsideToClose:true
+    };
+
     tc.measurement = [];
     MeasureService.getMeasureData().then(function (resp) {
         tc.measurement = resp.data;
@@ -7,9 +14,12 @@ table.controller('TableController', ['MeasureService', function (MeasureService)
         console.error(err);
     })
 
-    tc.getTouch = function(touchCsv) {
-        MeasureService.getTouch(touchCsv).then(function(resp) {
-            console.log(resp);
-        })
+    tc.getTouch = function(measure) {
+        $mdDialog.show(Object.assign(plotDialog, {
+            locals: {
+                type: 'touch',
+                measure: measure
+            }
+        }));
     }
 }]);

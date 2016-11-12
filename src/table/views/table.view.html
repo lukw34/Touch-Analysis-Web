@@ -1,6 +1,6 @@
 <div>
     <md-list>
-        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp full-width" style="width: 100%">
             <thead>
             <th>userId</th>
             <th>gender</th>
@@ -16,7 +16,7 @@
                 <td>{{measure.finger}}</td>
                 <td>{{measure.position}}</td>
                 <td>
-                    <md-button class="md-raised md-primary" ng-click="tc.getTouch(measure.touchURL)">touch</md-button>
+                    <md-button class="md-raised md-primary" ng-click="tc.getTouch(measure)">touch</md-button>
                 </td>
                 <td>
                     <md-button class="md-raised md-warn">accele..</md-button>
