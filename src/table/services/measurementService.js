@@ -41,7 +41,6 @@ table.factory('MeasureService', ['$http', '$q', function ($http, $q) {
             url: root + csvUrl
         }).then(function (resp) {
             var csvData = resp.data.split('\n');
-            console.log(csvData);
             deffered.resolve(csvParser(csvData, EventTouch));
         });
 
@@ -55,7 +54,6 @@ table.factory('MeasureService', ['$http', '$q', function ($http, $q) {
             url: root + csvUrl
         }).then(function (resp) {
             var csvData = resp.data.split('\n');
-            console.log(csvData);
             deffered.resolve(csvParser(csvData, EventAcc));
         });
 
@@ -69,8 +67,8 @@ table.factory('MeasureService', ['$http', '$q', function ($http, $q) {
         };
 
         angular.forEach(data, function (value, key) {
-            var container =  value.type === 'ACTION_UP' ? this.up : this.down;
-           container.push(value);
+            var container = value.type === 'ACTION_UP' ? this.up : this.down;
+            container.push(value);
         }, result);
 
         return result;
@@ -79,7 +77,9 @@ table.factory('MeasureService', ['$http', '$q', function ($http, $q) {
     factory.getIntervalTime = function (events) {
         var result = [];
         for (var index = 0; index < events.length - 1; index++) {
-            result.push(events[index + 1].eventTime - events[index].eventTime);
+            if (events[index + 1].eventTime) {
+                result.push(events[index + 1].eventTime - events[index].eventTime);
+            }
         }
 
         return result;
@@ -95,11 +95,20 @@ table.factory('MeasureService', ['$http', '$q', function ($http, $q) {
 
     factory.getTouchSeries = function (events) {
         var groupedEvents = factory.groupByType(events);
-        
+
         return {
-            up: factory.getIntervalTime(groupedEvents.up),
-            down: factory.getIntervalTime(groupedEvents.down),
-            mix: factory.getIntervalTimelMix(groupedEvents.up, groupedEvents.down)
+            up: {
+                name: 'up',
+                data: factory.getIntervalTime(groupedEvents.up)
+            },
+            down: {
+                name: 'down',
+                data: factory.getIntervalTime(groupedEvents.down)
+            },
+            mix: {
+                name: 'mix',
+                data: factory.getIntervalTimelMix(groupedEvents.up, groupedEvents.down)
+            }
         };
 
     };

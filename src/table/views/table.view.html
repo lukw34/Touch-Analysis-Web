@@ -1,6 +1,15 @@
 <div>
     <md-list>
-        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp full-width" style="width: 100%">
+        <md-content layout-gt-sm="row" layout-padding>
+            <div>
+                <md-input-container>
+                    <label>userId</label>
+                    <input ng-model="search.userId">
+                </md-input-container>
+            </div>
+        </md-content>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp full-width"
+               style="width: 100%">
             <thead>
             <th>userId</th>
             <th>gender</th>
@@ -9,8 +18,16 @@
             <th>position</th>
             </thead>
             <tbody>
-            <tr ng-repeat="measure in tc.measurement">
-                <td>{{measure.userId}}</td>
+            <tr ng-repeat="measure in tc.measurement | filter:search">
+                <td>
+                    <md-button class="md-icon-button" aria-label="refresh">
+                        <md-tooltip md-direction="left">
+                            {{measure.userId}}
+                        </md-tooltip>
+                        <md-icon md-svg-src="img/help.svg" style="width: 24px; height: 24px;">
+                        </md-icon>
+                    </md-button>
+                </td>
                 <td>{{measure.gender}}</td>
                 <td>{{measure.hand}}</td>
                 <td>{{measure.finger}}</td>

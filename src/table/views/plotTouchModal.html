@@ -10,9 +10,14 @@
             </div>
         </md-toolbar>
 
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-click="goto('mix')" name="mix">mix</md-nav-item>
+            <md-nav-item md-nav-click="goto('upDown')" name="upDown">up & down</md-nav-item>
+        </md-nav-bar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <taw-plot ng-if="series.mix" series="series.mix"></taw-plot>
+                <taw-plot ng-if="series.mix && currentNavItem ==='mix'" series="[series.mix]"></taw-plot>
+                <taw-plot ng-if="series.down && series.up && currentNavItem ==='upDown'" series="[series.up, series.down]"></taw-plot>
             </div>
         </md-dialog-content>
 

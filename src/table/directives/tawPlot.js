@@ -6,16 +6,20 @@ table.directive('tawPlot', function() {
             series: '='
         },
         link: function ($scope, element) {
+            var series = [];
+            angular.forEach($scope.series, function(value, key) {
+                this.push(Object.assign(value, {
+                    step: 'center',
+
+                }));
+            }, series);
+    
             Highcharts.chart(element[0], {
                 height:350,
                 title: {
                     text: undefined
                 },
-                series: [{
-                    data: $scope.series,
-                    step: 'center',
-                    name: ''
-                }]
+                series: series
             });
         }
     };
