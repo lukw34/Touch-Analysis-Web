@@ -1,3 +1,11 @@
+@-webkit-keyframes show-up {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
 #loading-bar .bar {
   background: white;
   height: 2px;
@@ -13,4 +21,11 @@
 .property {
   padding-left: 10px;
   min-width: 450px;
+}
+.search {
+  display: none;
+}
+.open-search {
+  -webkit-animation: show-up 0.75s;
+  display: block !important;
 }

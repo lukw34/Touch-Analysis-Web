@@ -1,24 +1,60 @@
 <div>
+    <md-content class="search" ng-class="{'open-search' : tc.isSearching}" layout-gt-md="row" layout-padding md-whiteframe="10">
+        <md-button class="md-icon-button" ng-click="tc.isSearching = false">
+            <md-icon md-svg-src="img/close.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+        <md-button class="md-raised md-warn" ng-click="tc.reset()">
+            Reset
+        </md-button>
+        <div layout="row" layout-xs="column">
+            <md-input-container flex>
+                <label>userId</label>
+                <input ng-model="search.userId">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Gender</label>
+                <md-select ng-model="searchStrict.gender">
+                    <md-option value="Man">Man</md-option>
+                    <md-option value="Woman">Woman</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container flex>
+                <label>desiredBPM</label>
+                <input ng-model="search.desiredBPM"/>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Hand</label>
+                <md-select ng-model="search.hand">
+                    <md-option value="">(default)</md-option>
+                    <md-option value="unspecified">unspecified</md-option>
+                    <md-option value="Right">Right</md-option>
+                    <md-option value="Left">Left</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div layout="row" layout-xs="column">
+            <md-input-container flex>
+                <label>finger</label>
+                <input type="number" ng-model="search.finger">
+            </md-input-container>
+            <md-input-container flex>
+                <label>age</label>
+                <input type="number" ng-model="search.age">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Position</label>
+                <md-select ng-model="search.position">
+                    <md-option value="">(default)</md-option>
+                    <md-option value="Standing">Standing</md-option>
+                    <md-option value="Sitting">Sitting</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </md-content>
+    <md-button ng-if="!tc.isSearching" class="md-icon-button" ng-click="tc.isSearching = true">
+        <md-icon md-svg-src="img/search.svg"></md-icon>
+    </md-button>
     <md-list>
-        <md-content layout-gt-md="row" layout-padding md-whiteframe="10">
-            <div layout="row" layout-xs="column">
-                <md-input-container flex>
-                    <label>userId</label>
-                    <input ng-model="search.userId">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Gender</label>
-                    <md-select ng-model="searchStrict.gender">
-                        <md-option value="Man">Man</md-option>
-                        <md-option value="Woman">Woman</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>desiredBPM</label>
-                    <input ng-model="search.desiredBPM"/>
-                </md-input-container>
-            </div>
-        </md-content>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp full-width"
                style="width: 100%">
             <thead>
