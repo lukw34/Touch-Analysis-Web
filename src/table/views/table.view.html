@@ -1,10 +1,21 @@
 <div>
     <md-list>
-        <md-content layout-gt-sm="row" layout-padding>
-            <div>
-                <md-input-container>
+        <md-content layout-gt-md="row" layout-padding md-whiteframe="10">
+            <div layout="row" layout-xs="column">
+                <md-input-container flex>
                     <label>userId</label>
                     <input ng-model="search.userId">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Gender</label>
+                    <md-select ng-model="searchStrict.gender">
+                        <md-option value="Man">Man</md-option>
+                        <md-option value="Woman">Woman</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>desiredBPM</label>
+                    <input ng-model="search.desiredBPM"/>
                 </md-input-container>
             </div>
         </md-content>
@@ -18,10 +29,10 @@
             <th>position</th>
             </thead>
             <tbody>
-            <tr ng-repeat="measure in tc.measurement | filter:search">
+            <tr ng-repeat="measure in tc.measurement | filter:search | filter:searchStrict:true">
                 <td>
-                    <md-button class="md-icon-button" aria-label="refresh">
-                        <md-tooltip md-direction="left">
+                    <md-button class="md-icon-button" aria-label="refresh" ng-click="tc.getDetail(measure)">
+                        <md-tooltip md-direction="bottom">
                             {{measure.userId}}
                         </md-tooltip>
                         <md-icon md-svg-src="img/help.svg" style="width: 24px; height: 24px;">

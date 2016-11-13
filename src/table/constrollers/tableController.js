@@ -7,6 +7,13 @@ table.controller('TableController', ['MeasureService', '$mdDialog', function (Me
         clickOutsideToClose: true
     };
 
+    var detailDialog = {
+        controller: 'DetailController',
+        templateUrl: 'dist/html/table/views/detailModal.html',
+        parent: angular.element(document.body),
+        clickOutsideToClose: true
+    };
+    
     tc.measurement = [];
     MeasureService.getMeasureData().then(function (resp) {
         tc.measurement = resp.data;
@@ -25,5 +32,13 @@ table.controller('TableController', ['MeasureService', '$mdDialog', function (Me
 
     tc.getAcc = function (measure) {
         console.log(measure);
-    }
+    };
+    
+    tc.getDetail = function(measure) {
+        $mdDialog.show(Object.assign(detailDialog, {
+            locals: {
+                measure: measure
+            }
+        }));
+    };
 }]);

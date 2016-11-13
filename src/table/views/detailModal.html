@@ -1,0 +1,22 @@
+<md-dialog aria-label="Detail">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column">
+                <div class="property" md-whiteframe="7" flex ng-repeat="property in properties">
+                    <h3 class="md-title">{{property.key}}: <span
+                            style="font-size: medium"><i>{{property.value}}</i></span></h3>
+                </div>
+
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
