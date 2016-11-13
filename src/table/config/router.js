@@ -5,9 +5,9 @@ table.config(['$stateProvider', function ($stateProvider) {
             views: {
                 'table@base': {
                     templateUrl: 'dist/html/table/views/table.view.html',
-                    controller: 'TableController as tc'
+                    controller: 'TableController'
                 }
             }
-   
+
         });
 }]);

@@ -2,7 +2,6 @@ table.directive('tawPlot', function() {
     return {
         restrict: 'AE',
         scope: {
-            title: '@',
             series: '='
         },
         link: function ($scope, element) {

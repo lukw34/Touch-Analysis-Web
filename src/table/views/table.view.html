@@ -1,9 +1,10 @@
 <div>
-    <md-content class="search" ng-class="{'open-search' : tc.isSearching}" layout-gt-md="row" layout-padding md-whiteframe="10">
-        <md-button class="md-icon-button" ng-click="tc.isSearching = false">
+    <md-content class="search" ng-class="{'open-search' : isSearching}" layout-gt-md="row" layout-padding
+                md-whiteframe="10">
+        <md-button class="md-icon-button" ng-click="closeSearch()">
             <md-icon md-svg-src="img/close.svg" aria-label="Close dialog"></md-icon>
         </md-button>
-        <md-button class="md-raised md-warn" ng-click="tc.reset()">
+        <md-button class="md-accent" ng-click="reset()">
             Reset
         </md-button>
         <div layout="row" layout-xs="column">
@@ -51,8 +52,8 @@
             </md-input-container>
         </div>
     </md-content>
-    <md-button ng-if="!tc.isSearching" class="md-icon-button" ng-click="tc.isSearching = true">
-        <md-icon md-svg-src="img/search.svg"></md-icon>
+    <md-button ng-if="!isSearching" class="md-icon-button" ng-click="openSearch()">
+        <md-icon md-svg-src="img/search.svg" aria-label="Search"></md-icon>
     </md-button>
     <md-list>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp full-width"
@@ -65,9 +66,9 @@
             <th>position</th>
             </thead>
             <tbody>
-            <tr ng-repeat="measure in tc.measurement | filter:search | filter:searchStrict:true">
+            <tr ng-repeat="measure in measurement | filter:search | filter:searchStrict:true">
                 <td>
-                    <md-button class="md-icon-button" aria-label="refresh" ng-click="tc.getDetail(measure)">
+                    <md-button class="md-icon-button" aria-label="refresh" ng-click="getDetail(measure)">
                         <md-tooltip md-direction="bottom">
                             {{measure.userId}}
                         </md-tooltip>
@@ -80,16 +81,13 @@
                 <td>{{measure.finger}}</td>
                 <td>{{measure.position}}</td>
                 <td>
-                    <md-button class="md-raised md-primary" ng-click="tc.getTouch(measure)">touch</md-button>
+                    <md-button class="md-raised md-primary" ng-click="getTouch(measure)">touch</md-button>
                 </td>
                 <td>
-                    <md-button class="md-raised md-warn" ng-click="tc.getAcc(measure)">acc</md-button>
+                    <md-button class="md-raised md-warn" ng-click="getAcc(measure)">acc</md-button>
                 </td>
             </tr>
-
-
             </tbody>
-
         </table>
     </md-list>
 </div>

@@ -110,7 +110,6 @@ table.factory('MeasureService', ['$http', '$q', function ($http, $q) {
                 data: factory.getIntervalTimelMix(groupedEvents.up, groupedEvents.down)
             }
         };
-
     };
 
     return factory;

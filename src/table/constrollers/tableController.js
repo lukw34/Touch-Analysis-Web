@@ -1,51 +1,57 @@
 table.controller('TableController', ['MeasureService', '$mdDialog', '$scope',
     function (MeasureService, $mdDialog, $scope) {
-    var tc = this;
+           var plotTouchDialog = {
+            controller: 'PlotTouchController',
+            templateUrl: 'dist/html/table/views/plotTouchModal.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+        };
 
-    var plotTouchDialog = {
-        controller: 'PlotTouchController',
-        templateUrl: 'dist/html/table/views/plotTouchModal.html',
-        parent: angular.element(document.body),
-        clickOutsideToClose: true
-    };
+        var detailDialog = {
+            controller: 'DetailController',
+            templateUrl: 'dist/html/table/views/detailModal.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+        };
 
-    var detailDialog = {
-        controller: 'DetailController',
-        templateUrl: 'dist/html/table/views/detailModal.html',
-        parent: angular.element(document.body),
-        clickOutsideToClose: true
-    };
+        $scope.isSearching = false;
+        $scope.measurement = [];
+        MeasureService.getMeasureData().then(function (resp) {
+            $scope.measurement = resp.data;
+        }).catch(function (err) {
+            console.error(err);
+        });
 
-    tc.isSearching = false;
-    tc.measurement = [];
-    MeasureService.getMeasureData().then(function (resp) {
-        tc.measurement = resp.data;
-    }).catch(function (err) {
-        console.error(err);
-    });
+        $scope.reset = function () {
+            $scope.search = undefined;
+        };
 
-    tc.reset = function () {
-        $scope.search = undefined;
-    };
+        $scope.getTouch = function (measure) {
+            $mdDialog.show(Object.assign(plotTouchDialog, {
+                locals: {
+                    type: 'touch',
+                    measure: measure
+                }
+            }));
+        };
 
-    tc.getTouch = function (measure) {
-        $mdDialog.show(Object.assign(plotTouchDialog, {
-            locals: {
-                type: 'touch',
-                measure: measure
-            }
-        }));
-    };
+        $scope.openSearch = function() {
+            $scope.isSearching = true;
+        };
 
-    tc.getAcc = function (measure) {
-        console.log(measure);
-    };
+        $scope.closeSearch = function() {
+            $scope.isSearching = false;
+        };
 
-    tc.getDetail = function (measure) {
-        $mdDialog.show(Object.assign(detailDialog, {
-            locals: {
-                measure: measure
-            }
-        }));
-    };
-}]);
+        $scope.getAcc = function (measure) {
+            console.log(measure);
+        };
+
+        $scope.getDetail = function (measure) {
+            $mdDialog.show(Object.assign(detailDialog, {
+                locals: {
+                    measure: measure
+                }
+            }));
+        };
+    }]);
