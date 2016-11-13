@@ -2,16 +2,17 @@
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Mango (Fruit)</h2>
+                <h2>{{title}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    <md-icon md-svg-src="img/close.svg" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
 
         <md-dialog-content>
             <div class="md-dialog-content">
+                <taw-plot ng-if="series.mix" series="series.mix"></taw-plot>
             </div>
         </md-dialog-content>
 

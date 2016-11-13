@@ -6,5 +6,5 @@ base.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $
             abstract: true,
             url: '/main',
             templateUrl: 'dist/html/base/views/mainTemplate.html'
-        })
+        });
 }]);

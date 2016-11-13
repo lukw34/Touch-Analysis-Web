@@ -12,7 +12,7 @@ table.controller('TableController', ['MeasureService', '$mdDialog', function (Me
         tc.measurement = resp.data;
     }).catch(function (err) {
         console.error(err);
-    })
+    });
 
     tc.getTouch = function(measure) {
         $mdDialog.show(Object.assign(plotDialog, {
@@ -21,5 +21,14 @@ table.controller('TableController', ['MeasureService', '$mdDialog', function (Me
                 measure: measure
             }
         }));
-    }
+    };
+
+    tc.getAcc= function(measure) {
+        $mdDialog.show(Object.assign(plotDialog, {
+            locals: {
+                type: 'acc',
+                measure: measure
+            }
+        }));
+    };
 }]);

@@ -30,8 +30,10 @@
     "gulp-express": "^0.3.5",
     "gulp-htmlcpr": "0.0.4",
     "gulp-jshint": "^2.0.2",
+    "gulp-jslint": "^1.0.5",
     "gulp-less": "^3.2.0",
     "gulp-minify": "0.0.14",
-    "gulp-watch": "^4.3.10"
+    "gulp-watch": "^4.3.10",
+    "jshint": "^2.9.4"
   }
 }

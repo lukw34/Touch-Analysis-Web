@@ -9,5 +9,5 @@ table.config(['$stateProvider', function ($stateProvider) {
                 }
             }
    
-        })
+        });
 }]);

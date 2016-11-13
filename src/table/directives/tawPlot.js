@@ -2,14 +2,21 @@ table.directive('tawPlot', function() {
     return {
         restrict: 'AE',
         scope: {
-            xAxisName: '@',
-            yAxisName: '@',
-            xAxisValue: '@',
-            yAxisValue: '@'
+            title: '@',
+            series: '='
         },
-        link: function (element, $scope) {
-            console.log(element);
-            console.log($scope)
+        link: function ($scope, element) {
+            Highcharts.chart(element[0], {
+                height:350,
+                title: {
+                    text: undefined
+                },
+                series: [{
+                    data: $scope.series,
+                    step: 'center',
+                    name: ''
+                }]
+            });
         }
-    }
+    };
 });

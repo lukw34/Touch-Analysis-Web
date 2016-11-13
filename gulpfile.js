@@ -5,8 +5,16 @@ var path = require('path');
 var minify = require('gulp-minify');
 var htmlcpr = require('gulp-htmlcpr');
 var concat = require('gulp-concat');
+var jshint = require('gulp-jshint');
 
-gulp.task('copy-html', function() {
+gulp.task('jslint', function () {
+    return gulp.src('./src/**/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+
+});
+
+gulp.task('copy-html', function () {
     return gulp.src('./src/**/*.html')
         .pipe(htmlcpr())
         .pipe(gulp.dest('./dist/html'))
@@ -14,7 +22,7 @@ gulp.task('copy-html', function() {
 
 
 gulp.task('less', function () {
-   return gulp.src('./src/**/*.less')
+    return gulp.src('./src/**/*.less')
         .pipe(less({
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
@@ -22,7 +30,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./src/**/*.js', ['compress']);
+    gulp.watch('./src/**/*.js', ['compress', 'jslint']);
     gulp.watch('./src/**/*.less', ['less']);
     gulp.watch('./src/**/*.html', ['copy-html']);
 });
@@ -31,12 +39,12 @@ gulp.task('server', function () {
     server.run(['index.js']);
 });
 
-gulp.task('compress', function() {
+gulp.task('compress', function () {
     return gulp.src('./src/**/*.js')
         .pipe(concat('app.js'))
         // .pipe(uglify())
         .pipe(gulp.dest('./dist/'))
 });
 
-gulp.task('start', ['less', 'compress', 'copy-html', 'server', 'watch'])
+gulp.task('start', ['less', 'compress', 'jslint', 'copy-html', 'server', 'watch'])
 
